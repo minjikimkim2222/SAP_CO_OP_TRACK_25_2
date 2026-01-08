@@ -1,0 +1,52 @@
+*&---------------------------------------------------------------------*
+*& Report ZEDR09_PRACTICE009
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZEDR09_PRACTICE009 MESSAGE-ID ZMED09.
+
+INCLUDE ZEDR09_PRACTICE009_TOP.
+INCLUDE ZEDR09_PRACTICE009_SCR.
+INCLUDE ZEDR09_PRACTICE009_F01.
+INCLUDE ZEDR09_PRACTICE009_PBO.
+INCLUDE ZEDR09_PRACTICE009_PAI.
+
+INITIALIZATION.
+  PERFORM SET_DATE. "#### ###
+
+"######
+START-OF-SELECTION.
+  PERFORM CHECK_SCREEN. "### ## ##
+  PERFORM SELECT_DATA.
+  PERFORM MODIFY_DATA.
+
+  IF GT_EMP[] IS NOT INITIAL.
+    CALL SCREEN 100.
+  ELSE.
+    MESSAGE I013. "##### ## #### ####
+    EXIT.
+  ENDIF.
+
+*GUI Texts
+*----------------------------------------------------------
+* T100 --> #######
+* T100 --> #######
+
+
+*Selection texts
+*----------------------------------------------------------
+* S_DATBI         ####
+* S_DEPCO         ####
+* S_PERNR         ####
+* Z_CHECK         #####
+
+
+*Messages
+*----------------------------------------------------------
+*
+* Message class: ZMED09
+*013   ##### ## #### ####.
+*018   #### ## #### # ### ### #####.
+
+----------------------------------------------------------------------------------
+Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 750

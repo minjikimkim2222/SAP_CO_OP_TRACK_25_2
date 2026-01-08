@@ -1,0 +1,69 @@
+*&---------------------------------------------------------------------*
+*& Report ZWORK09_001
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZWORK09_001 MESSAGE-ID ZMED09. "message #### ##### ##
+
+INCLUDE ZWORK09_001_CLS.
+INCLUDE ZWORK09_001_TOP.
+INCLUDE ZWORK09_001_SCR.
+INCLUDE ZWORK09_001_F01.
+INCLUDE ZWORK09_001_PBO.
+INCLUDE ZWORK09_001_PAI.
+
+
+INITIALIZATION.
+  PERFORM MAKE_BUTTON. "### #### ## ###
+
+AT SELECTION-SCREEN.
+  CASE SY-UCOMM.
+    WHEN 'FC01'. "Function Key 1 = FC01 (####### ## ### #)
+      PERFORM DOWNLOAD_TEMPLATE.
+  ENDCASE.
+
+
+AT SELECTION-SCREEN OUTPUT.
+  PERFORM CONTROL_SCREEN. "## ##
+
+"f4# ### #, ## ## ### #### ### ##
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR P_FILE.
+   CALL FUNCTION 'F4_FILENAME'
+      IMPORTING
+        FILE_NAME = P_FILE.
+
+"######
+START-OF-SELECTION.
+  PERFORM READ_DATA USING P_FILE.
+  PERFORM MODIFY_DATA.
+
+  CALL SCREEN 100.
+
+*GUI Texts
+*----------------------------------------------------------
+* T100 --> ## ####
+
+
+*Selection texts
+*----------------------------------------------------------
+* P_FILE         ###
+* P_GDATU         ####
+* P_KURST         ####
+
+
+*Messages
+*----------------------------------------------------------
+*
+* Message class: Hard coded
+*   ### ## ## ### ## 5####
+*
+* Message class: ZMED09
+*001   ##### #######.
+*002   SMW0 ##### ## # ####.
+*003   #### ##### ## #######.
+*007   ### #######.
+*010   ## ### #######.
+*019   ## ### ######.
+
+----------------------------------------------------------------------------------
+Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 750

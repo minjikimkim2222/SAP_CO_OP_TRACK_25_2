@@ -1,0 +1,73 @@
+* ---------------------------------------------------------------------*
+*& Report ZMM09_004
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZMM09_004.
+
+INCLUDE ZMM09_004_CLS.
+INCLUDE ZMM09_004_TOP.
+INCLUDE ZMM09_004_SCR.
+INCLUDE ZMM09_004_F01.
+INCLUDE ZMM09_004_PBO.
+INCLUDE ZMM09_004_PAI.
+
+
+INITIALIZATION.
+  PERFORM SET_SCREEN.
+
+
+AT SELECTION-SCREEN OUTPUT.
+  PERFORM CONTROL_SCREEN.
+
+START-OF-SELECTION.
+  PERFORM VALID_INPUT_ALL.
+  PERFORM VALID_INPUT.
+
+  IF P_R1 = 'X'.
+    PERFORM GET_DATA.
+    CALL SCREEN 100.
+
+  ELSEIF P_R2 = 'X'.
+    PERFORM GET_DATA_200.
+    PERFORM MODIFY_DATA_200.
+    CALL SCREEN 200.
+
+  ENDIF.
+
+*GUI Texts
+*----------------------------------------------------------
+* T100 --> ####
+* T200 --> ####
+* T100 --> ####
+* T200 --> ####
+
+
+*Selection texts
+*----------------------------------------------------------
+* P_BKTXT         ###
+* P_BLDAT         #####
+* P_BLDATH         ###
+* P_BUDATH         ###
+* P_EBELNC         ####
+* P_EBELNS         ####
+* P_MWSKZ         ####
+* P_R1         ####
+* P_R2         ####
+* P_RMWWR         ##
+* P_WAERS         ###
+* P_WERKSC         ###
+* P_WERKSS         ###
+* P_WMWST1         ##
+* P_ZFBDT         ###
+* P_ZTERM         ####
+
+
+*Messages
+*----------------------------------------------------------
+*
+* Message class: Hard coded
+*   ####, ###, ###### ########
+
+----------------------------------------------------------------------------------
+Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 750

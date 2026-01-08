@@ -1,0 +1,53 @@
+*&---------------------------------------------------------------------*
+*& Report ZEDR09_037
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZEDR09_037.
+
+INCLUDE ZEDR09_037_CLS. "CLS# ### TOP ## ##
+INCLUDE ZEDR09_037_TOP.
+INCLUDE ZEDR09_037_SCR.
+INCLUDE ZEDR09_037_F01.
+INCLUDE ZEDR09_037_PBO.
+INCLUDE ZEDR09_037_PAI.
+
+INITIALIZATION.
+  PERFORM SET_INIT. "####
+
+START-OF-SELECTION.
+  IF S_ZCODE IS INITIAL.
+    IF S_ZPERNR IS INITIAL.
+      MESSAGE '##### #### ## ##### #####.' TYPE 'I'.
+      EXIT.
+    ENDIF.
+  ENDIF.
+
+PERFORM SELECT_DATA.
+
+IF GT_STUDENT[] IS NOT INITIAL.
+  CALL SCREEN 100.
+ELSE.
+ MESSAGE '### ### #######.' TYPE 'I'.
+ EXIT.
+ENDIF.
+
+*GUI Texts
+*----------------------------------------------------------
+* T100 --> #####
+
+
+*Selection texts
+*----------------------------------------------------------
+* S_ZCODE         ####
+* S_ZPERNR         ####
+
+
+*Messages
+*----------------------------------------------------------
+*
+* Message class: Hard coded
+*   ##########
+
+----------------------------------------------------------------------------------
+Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 750

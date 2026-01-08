@@ -1,0 +1,76 @@
+*&---------------------------------------------------------------------*
+*& Report ZEDR09_PRACTICE008
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZEDR09_PRACTICE008 MESSAGE-ID ZMED09.
+
+INCLUDE ZEDR09_PRACTICE008_TOP.
+INCLUDE ZEDR09_PRACTICE008_SCR.
+INCLUDE ZEDR09_PRACTICE008_F01.
+INCLUDE ZEDR09_PRACTICE008_PBO.
+INCLUDE ZEDR09_PRACTICE008_PAI.
+
+
+INITIALIZATION.
+  PERFORM SET_DATE. "## #### ## (####, ####)
+
+AT SELECTION-SCREEN OUTPUT.
+  PERFORM CONTROL_SCREEN. "#### (####### ####, #### ## ### ##)
+
+"## ####
+START-OF-SELECTION.
+  PERFORM CHECK_SCREEN. "### ## (####,## ##### ##, ###### range ##)
+
+  IF P_R1 = C_X.        "######
+    PERFORM SELECT_R1.
+    PERFORM MODIFY_R1.
+
+    IF GT_ORDER IS NOT INITIAL.
+      CALL SCREEN 100.
+    ELSE.
+      MESSAGE I013. "##### ## #### ####
+      EXIT.
+    ENDIF.
+
+
+  ELSEIF P_R2 = C_X.    "######
+    PERFORM SELECT_R2.
+    PERFORM MODIFY_R2.
+
+    IF GT_DELIVERY IS NOT INITIAL.
+      CALL SCREEN 200.
+    ELSE.
+      MESSAGE I013.
+      EXIT.
+    ENDIF.
+  ENDIF.
+
+*GUI Texts
+*----------------------------------------------------------
+* T100 --> ######
+* T100 --> ######
+
+
+*Selection texts
+*----------------------------------------------------------
+* P_R1         ####
+* P_R2         ####
+* P_ZID         ##ID
+* S_ZDDATE         ####
+* S_ZID         ##ID
+* S_ZJDATE         ####
+* S_ZMATNR         ####
+* S_ZORDNO         ####
+* Z_CHECK         ######
+
+
+*Messages
+*----------------------------------------------------------
+*
+* Message class: ZMED09
+*013   ##### ## #### ####.
+*017   #### ## #### # ### ### #####.
+
+----------------------------------------------------------------------------------
+Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 750
